@@ -1,0 +1,255 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "test.scala",
+			"settings":
+			{
+				"buffer_size": 84,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
+			"settings":
+			{
+				"buffer_size": 61,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Scala/Scala.sublime-build",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"",
+				"Sort Lines"
+			],
+			[
+				"Snippet: ",
+				"Snippet: #!/usr/bin/env"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Java/JavaC.sublime-build",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Java.sublime-package",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Python.sublime-package",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Scala.sublime-package",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build",
+		"/C/Users/Evan/GitProjects/scala_dsl/asdf.py",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
+		"/C/Users/Evan/GitProjects/runestone/evan.sublime-project",
+		"/C/Users/Evan/GitProjects/runestone/evan.sublime-workspace",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/docstructure.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/include.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/latex.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/math.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/newcommand.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/tables.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/symbols.rst",
+		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/packages.rst",
+		"/home/evanott/GitProjects/runestone/data_analysis/_sources/index.rst",
+		"/home/evanott/GitProjects/runestone/data_analysis/_sources/Mathematica/lists.rst",
+		"/home/evanott/GitProjects/runestone/data_analysis/_sources/Mathematica/structure.rst",
+		"/home/evanott/GitProjects/runestone/data_analysis/_sources/syllabus.rst",
+		"/home/evanott/GitProjects/runestone/data_analysis/_sources/Mathematica/mathematica.rst",
+		"/home/evanott/.config/sublime-text-2/Packages/User/adlorem.sublime-snippet",
+		"/usr/share/applications/sublime.desktop",
+		"/home/evanott/GitProjects/runestone/evan.sublime-project",
+		"/home/evanott/.config/sublime-text-2/Packages/User/Data_Analysis.sublime-build",
+		"/home/evanott/GitProjects/runestone/evan.sublime-workspace",
+		"/home/evanott/.config/sublime-text-2/Packages/User/data_analysis.sublime-build",
+		"/home/evanott/.config/sublime-text-2/Packages/LaTeXTools/README.markdown",
+		"/home/evanott/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
+		"/home/evanott/GitProjects/runestone/data_analysis/conf.py",
+		"/home/evanott/GitProjects/runestone/data_analysis/evan.sublime-project"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\Evan\\GitProjects\\runestone"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ls"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "test.scala",
+					"settings":
+					{
+						"buffer_size": 84,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
+					"settings":
+					{
+						"buffer_size": 61,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 288.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
