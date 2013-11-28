@@ -12,3 +12,13 @@ Comments are used, then replacing it with String, etc. Essentially,
 take advantage of the fact that some 1-1 mappings exist by reducing the size of our
 working set. Can potentially find some paths that are easy, and do those.
 As stated, if 2 stack, conditional, loop, should be near-Turing-complete.
+
+So, based on experiments, need each symbol S with element e in its FOLLOW set to be
+class S_CLASS {
+	object e extends E_CLASS {}
+}
+object S extends S_CLASS{}
+
+Or similar construct with functions as possible so that it can support 'S e' without quotes,
+etc. That way, successively calling "s s' s'' s''' s'''' PERIOD" would compile. Want functions
+rather than objects wherever possible simply because that way we can create our parse tree.
