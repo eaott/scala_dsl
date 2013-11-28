@@ -11,15 +11,23 @@
 			"file": "test.scala",
 			"settings":
 			{
-				"buffer_size": 84,
+				"buffer_size": 295,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 61,
+				"buffer_size": 1011,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/evanott/Dropbox/College/ast352k/paper.tex",
+			"settings":
+			{
+				"buffer_size": 9998,
 				"line_ending": "Windows"
 			}
 		}
@@ -64,13 +72,14 @@
 	},
 	"file_history":
 	[
+		"/home/evanott/.config/sublime-text-2/Packages/Scala/Scala.sublime-build",
+		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Java/JavaC.sublime-build",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Java.sublime-package",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Python.sublime-package",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Pristine Packages/Scala.sublime-package",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build",
 		"/C/Users/Evan/GitProjects/scala_dsl/asdf.py",
-		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
 		"/C/Users/Evan/GitProjects/runestone/evan.sublime-project",
 		"/C/Users/Evan/GitProjects/runestone/evan.sublime-workspace",
 		"/C/Users/Evan/GitProjects/runestone/data_analysis/_sources/LaTeX/docstructure.rst",
@@ -132,7 +141,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -140,20 +149,46 @@
 					"file": "test.scala",
 					"settings":
 					{
-						"buffer_size": 84,
+						"buffer_size": 295,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								84,
-								84
+								52,
+								52
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 1011,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1011,
+								1011
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -162,27 +197,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
+					"buffer": 2,
+					"file": "/home/evanott/Dropbox/College/ast352k/paper.tex",
 					"settings":
 					{
-						"buffer_size": 61,
+						"buffer_size": 9998,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								58,
-								58
+								825,
+								871
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3024.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
