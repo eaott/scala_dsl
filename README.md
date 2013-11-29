@@ -22,3 +22,5 @@ object S extends S_CLASS{}
 Or similar construct with functions as possible so that it can support 'S e' without quotes,
 etc. That way, successively calling "s s' s'' s''' s'''' PERIOD" would compile. Want functions
 rather than objects wherever possible simply because that way we can create our parse tree.
+Use few adjectives, characters, etc. at first, as long as pattern is clear for future
+development.

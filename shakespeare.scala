@@ -1,4 +1,4 @@
-class Shakespeare {
+object Shakespeare {
 	class Equality {
 	}
 	class AS_CLASS {
@@ -9,7 +9,7 @@ class Shakespeare {
 	object as extends AS_CLASS{}
 
 	def main(args: Array[String]): Unit = {
-	  as good as 
+	  println(as good as)
 	}
 	
 }
