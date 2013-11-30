@@ -24,3 +24,6 @@ etc. That way, successively calling "s s' s'' s''' s'''' PERIOD" would compile. 
 rather than objects wherever possible simply because that way we can create our parse tree.
 Use few adjectives, characters, etc. at first, as long as pattern is clear for future
 development.
+
+
+Notes: POSITIVE_NOUN = 1, NEGATIVE_NOUN = -1. ADJ = * 2

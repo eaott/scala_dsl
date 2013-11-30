@@ -3,32 +3,52 @@
 	{
 		"selected_items":
 		[
+			[
+				"pr",
+				"printInt"
+			],
+			[
+				"e",
+				"extends"
+			],
+			[
+				"Eq",
+				"EqualityBuilder"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "test.scala",
+			"file": "shakespeare.scala",
 			"settings":
 			{
-				"buffer_size": 295,
-				"line_ending": "Windows"
+				"buffer_size": 1589,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "baysick.scala",
+			"settings":
+			{
+				"buffer_size": 10872,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "simple.txt",
+			"settings":
+			{
+				"buffer_size": 4465,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 1011,
+				"buffer_size": 1608,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/evanott/Dropbox/College/ast352k/paper.tex",
-			"settings":
-			{
-				"buffer_size": 9998,
-				"line_ending": "Windows"
 			}
 		}
 	],
@@ -72,6 +92,15 @@
 	},
 	"file_history":
 	[
+		"/home/evanott/GitProjects/scala_dsl/original.y",
+		"/home/evanott/GitProjects/scala_dsl/current.txt",
+		"/home/evanott/GitProjects/scala_dsl/test.scala",
+		"/home/evanott/GitProjects/scala_dsl/Makefile",
+		"/home/evanott/GitProjects/scala_dsl/evan.sublime-project",
+		"/home/evanott/Public/blueftp-529570647.txt",
+		"/home/evanott/Public/spl-1.2.1/include/be.wordlist",
+		"/home/evanott/GitProjects/scala_dsl/fullgrammar.txt",
+		"/home/evanott/Dropbox/College/ast352k/paper.tex",
 		"/home/evanott/.config/sublime-text-2/Packages/Scala/Scala.sublime-build",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Java/JavaC.sublime-build",
@@ -123,6 +152,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"If_SO",
+			"InOut",
+			"UnCONDITIONALSentence",
+			"Jump",
+			"JumpPhrase",
+			"Comparison",
+			"NonnegatedComparison",
+			"InEQUALITY",
+			"Equality",
+			"Comparative",
+			"Adjective",
+			"BinaryOperator",
+			"Conditional",
+			"EndSymbol",
+			"JumpPhraseBeginning",
+			"JumpPhraseEnd",
+			"NegativeComparative",
+			"NegativeNoun",
+			"OpenYour",
+			"PositiveComparative",
+			"PositiveNoun",
+			"Pronoun",
+			"QuestionSymbol",
+			"StatementSymbol",
+			"StringSymbol",
+			"UnaryOperator",
+			"Comment",
 			"ls"
 		],
 		"highlight": true,
@@ -131,6 +187,32 @@
 		"regex": false,
 		"replace_history":
 		[
+			"IN_OUT",
+			"UnconditionalSentence",
+			"JUMP",
+			"JUMP_PHRASE",
+			"COMPARISON",
+			"NONNEGATED_COMPARISON",
+			"INEQUALITY",
+			"EQUALITY",
+			"COMPARATIVE",
+			"ADJECTIVE",
+			"BINARY_OPERATOR",
+			"CONDITIONAL",
+			"END_SYMBOL",
+			"JUMP_PHRASE_BEGINNING",
+			"JUMP_PHRASE_END",
+			"NEGATIVE_COMPARATIVE",
+			"NEGATIVE_NOUN",
+			"OPEN_YOUR",
+			"POSITIVE_COMPARATIVE",
+			"POSITIVE_NOUN",
+			"PRONOUN",
+			"QUESTION_MARK",
+			"STATEMENT_SYMBOL",
+			"STRING_SYMBOL",
+			"UNARY_OPERATOR",
+			"String"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -141,23 +223,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "test.scala",
+					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 295,
+						"buffer_size": 1589,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								52,
-								52
+								1536,
+								1536
 							]
 						],
 						"settings":
@@ -165,25 +247,81 @@
 							"syntax": "Packages/Scala/Scala.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "README.md",
+					"file": "baysick.scala",
 					"settings":
 					{
-						"buffer_size": 1011,
+						"buffer_size": 10872,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1011,
-								1011
+								2311,
+								2311
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "simple.txt",
+					"settings":
+					{
+						"buffer_size": 4465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								975,
+								975
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 1608,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1607,
+								1607
 							]
 						],
 						"settings":
@@ -191,33 +329,7 @@
 							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/evanott/Dropbox/College/ast352k/paper.tex",
-					"settings":
-					{
-						"buffer_size": 9998,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								825,
-								871
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3024.0,
+						"translation.y": 162.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
