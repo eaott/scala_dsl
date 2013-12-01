@@ -25,5 +25,10 @@ rather than objects wherever possible simply because that way we can create our 
 Use few adjectives, characters, etc. at first, as long as pattern is clear for future
 development.
 
+STATUS:
+Have scenes, acts, and most unconditional sentences. Need the Values and Constants including
+mathematical operators, then can finish off unconditional sentences and call it a day from
+the parsing point of view. Then, it's on to Eval. Sigh...
+
 
 Notes: POSITIVE_NOUN = 1, NEGATIVE_NOUN = -1. ADJ = * 2

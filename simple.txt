@@ -4,31 +4,33 @@ Title: String END_SYMBOL
 CharacterDeclarationList: CharacterDeclaration |
                           CharacterDeclaration CharacterDeclarationList
 CharacterDeclaration: CHARACTER COMMA String END_SYMBOL 
-Acts: Act | Act Acts
-Act: ActHeader Scenes
-ActHeader: ACT_ROMAN COLON String END_SYMBOL
-Scenes: Scene | Scene Scenes
-Scene: SceneHeader SceneContents
-SceneHeader: SCENE_ROMAN COLON String END_SYMBOL
-SceneContents: EnterExit | Line | EnterExit SceneContents | Line SceneContents
 
 
-EnterExit: LEFT_BRACKET ENTER CHARACTER RIGHT_BRACKET |
+--Acts: Act | Act Acts
+--Act: ActHeader Scenes
+--ActHeader: ACT_ROMAN COLON
+--Scenes: Scene | Scene Scenes
+--Scene: SceneHeader SceneContents
+--SceneHeader: SCENE_ROMAN COLON
+--SceneContents: EnterExit | Line | EnterExit SceneContents | Line SceneContents
+
+
+--EnterExit: LEFT_BRACKET ENTER CHARACTER RIGHT_BRACKET |
            LEFT_BRACKET ENTER CharacterList RIGHT_BRACKET |
            LEFT_BRACKET EXIT CHARACTER RIGHT_BRACKET | 
            LEFT_BRACKET EXEUNT CharacterList RIGHT_BRACKET | 
            LEFT_BRACKET EXEUNT RIGHT_BRACKET
-CharacterList: CHARACTER AND CHARACTER | CHARACTER COMMA CharacterList
+--CharacterList: CHARACTER AND CHARACTER | CHARACTER COMMA CharacterList
 
 -- Line: CHARACTER COLON SentenceList
 -- SentenceList: Sentence | Sentence SentenceList
 -- Sentence: UnconditionalSentence | CONDITIONAL COMMA UnconditionalSentence
-UnconditionalSentence: IN_OUT | JUMP | Question | Recall | Remember | Statement
+UnconditionalSentence: --IN_OUT | --JUMP | Question | --Recall | Remember | Statement
 
 
 Question: BE Value COMPARISON Value QUESTION_MARK
 
-Recall: RECALL String STATEMENT_SYMBOL
+--Recall: RECALL YOURSELF STATEMENT_SYMBOL
 
 Remember: REMEMBER Value STATEMENT_SYMBOL
 
