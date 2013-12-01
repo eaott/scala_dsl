@@ -4,6 +4,106 @@
 		"selected_items":
 		[
 			[
+				"Scene",
+				"SceneRomanClass"
+			],
+			[
+				"Act",
+				"ACT_II"
+			],
+			[
+				"Scne",
+				"SceneRomanClass"
+			],
+			[
+				"Enter",
+				"EnterExit"
+			],
+			[
+				"Recal",
+				"RecallBeginningClass"
+			],
+			[
+				"Reca",
+				"RecallBeginningClass"
+			],
+			[
+				"Char",
+				"Character"
+			],
+			[
+				"Character",
+				"CharacterCommaBuilder"
+			],
+			[
+				"Chara",
+				"CharacterListBuilder"
+			],
+			[
+				"JumpPhrase",
+				"JumpPhraseBeginning"
+			],
+			[
+				"SCNE",
+				"SceneRomanClass"
+			],
+			[
+				"Un",
+				"UnconditionalSentence"
+			],
+			[
+				"Jump",
+				"JumpPhraseEnd"
+			],
+			[
+				"Senten",
+				"SentenceList"
+			],
+			[
+				"List",
+				"ListenClass"
+			],
+			[
+				"Listen",
+				"ListenClass"
+			],
+			[
+				"Open",
+				"OpenClass"
+			],
+			[
+				"Speak",
+				"SpeakClass"
+			],
+			[
+				"Liste",
+				"ListenClass"
+			],
+			[
+				"Spea",
+				"SpeakClass"
+			],
+			[
+				"Sent",
+				"Sentence"
+			],
+			[
+				"Sentence",
+				"SentenceBuilder"
+			],
+			[
+				"State",
+				"StatementSymbolClass"
+			],
+			[
+				"Statement",
+				"STATEMENT_SYMBOL"
+			],
+			[
+				"STAT",
+				"StatementSymbolClass"
+			],
+			[
 				"pr",
 				"printInt"
 			],
@@ -20,18 +120,10 @@
 	"buffers":
 	[
 		{
-			"file": "shakespeare.scala",
+			"contents": "ACT_I COLON SCENE_I COLON ROMEO COLON IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL SCENE_II COLON JULIET COLON LET_US PROCEED_TO SCENE_II STATEMENT_SYMBOL LEFT_BRACKET ENTRE JULIET RIGHT_BRACKET ACT_II COLON SCENE_II COLON ROMEO COLON IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL",
 			"settings":
 			{
-				"buffer_size": 1589,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "baysick.scala",
-			"settings":
-			{
-				"buffer_size": 10872,
+				"buffer_size": 279,
 				"line_ending": "Unix"
 			}
 		},
@@ -39,7 +131,15 @@
 			"file": "simple.txt",
 			"settings":
 			{
-				"buffer_size": 4465,
+				"buffer_size": 4287,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "shakespeare.scala",
+			"settings":
+			{
+				"buffer_size": 7360,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,7 +147,7 @@
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 1608,
+				"buffer_size": 1859,
 				"line_ending": "Unix"
 			}
 		}
@@ -94,12 +194,15 @@
 	[
 		"/home/evanott/GitProjects/scala_dsl/original.y",
 		"/home/evanott/GitProjects/scala_dsl/current.txt",
+		"/home/evanott/GitProjects/scala_dsl/fullgrammar.txt",
+		"/home/evanott/GitProjects/scala_dsl/shakespeare.scala",
+		"/home/evanott/GitProjects/scala_dsl/README.md",
+		"/home/evanott/GitProjects/scala_dsl/baysick.scala",
 		"/home/evanott/GitProjects/scala_dsl/test.scala",
 		"/home/evanott/GitProjects/scala_dsl/Makefile",
 		"/home/evanott/GitProjects/scala_dsl/evan.sublime-project",
 		"/home/evanott/Public/blueftp-529570647.txt",
 		"/home/evanott/Public/spl-1.2.1/include/be.wordlist",
-		"/home/evanott/GitProjects/scala_dsl/fullgrammar.txt",
 		"/home/evanott/Dropbox/College/ast352k/paper.tex",
 		"/home/evanott/.config/sublime-text-2/Packages/Scala/Scala.sublime-build",
 		"/C/Users/Evan/AppData/Roaming/Sublime Text 2/Packages/Scala/Scala.sublime-build",
@@ -152,6 +255,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"SentenceBuilder",
+			"Jump ",
 			"If_SO",
 			"InOut",
 			"UnCONDITIONALSentence",
@@ -187,6 +292,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"UnconditionalSentenceBuilder",
+			"JumpClass ",
 			"IN_OUT",
 			"UnconditionalSentence",
 			"JUMP",
@@ -223,54 +330,55 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 1589,
+						"buffer_size": 279,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1536,
-								1536
+								279,
+								279
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage"
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"word_wrap": true,
+							"wrap_width": 70
 						},
 						"translation.x": 0.0,
-						"translation.y": 540.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "baysick.scala",
+					"file": "simple.txt",
 					"settings":
 					{
-						"buffer_size": 10872,
+						"buffer_size": 4287,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2311,
-								2311
+								3321,
+								3321
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -282,28 +390,26 @@
 				},
 				{
 					"buffer": 2,
-					"file": "simple.txt",
+					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 4465,
+						"buffer_size": 7360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								975,
-								975
+								6618,
+								6618
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Scala/Scala.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 324.0,
+						"translation.y": 3996.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -313,15 +419,15 @@
 					"file": "README.md",
 					"settings":
 					{
-						"buffer_size": 1608,
+						"buffer_size": 1859,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1607,
-								1607
+								1859,
+								1859
 							]
 						],
 						"settings":
@@ -329,7 +435,7 @@
 							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 396.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
