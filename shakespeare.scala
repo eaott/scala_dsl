@@ -338,6 +338,7 @@ class Shakespeare {
 		var id = 0;
 		def COLON:Act = {
 			curAct = new Act(this.id)
+			stmts.put(id, new java.util.TreeMap[Int, List[Execution]]())
 			curAct
 		}
 	}
@@ -350,14 +351,15 @@ class Shakespeare {
 		var id = 0;
 		def COLON:Scene = {
 			curScene = new Scene(this.id)
+			stmts.get(curAct.num).put(id, List[Execution]())
 			curCharacters.clear()
 			curScene
 		}
 	}
 	class Character{
 		var name:String = "";
-		private var curVal:Int = 0;
-		private var stack:Stack[Int] = new Stack[Int]
+		var curVal:Int = 0;
+		var stack:Stack[Int] = new Stack[Int]
 		def COLON:SentenceList = {
 			if (!curCharacters.contains(this))
 				throw new IllegalStateException("Character talking who isn't on stage")
@@ -374,10 +376,90 @@ class Shakespeare {
 		}
 	}
 
-	class Execution{}
+	abstract class Execution{
+		def go():Unit
+	}
+	case class AssignmentExec(c:Character, v:ValueExec) extends Execution
+	{
+		def go():Unit = {c.curVal = v.value()}
+	}
+	case class RecallExec(c:Character) extends Execution
+	{
+		def go():Unit = {c.curVal = c.stack.pop()}
+	}
+	case class RememberExec(c:Character, v:ValueExec) extends Execution
+	{
+		def go():Unit = {c.stack.push(v.value())}
+	}
+	case class EndExec extends Execution
+	{
+		def go():Unit = {exit}
+	}
+	case class ActJumpExec(num:Int) extends Execution
+	{
+		def go():Unit = {
+			var firstIndex:Int = stmts.get(num).firstKey()
+			index = Tuple3(num, firstIndex, 1)
+		}
+	}
+	case class SceneJumpExec(num:Int) extends Execution
+	{
+		def go():Unit = {
+			index = Tuple3(index._1, num, 1)
+		}
+	}
+	case class CondExec(b:Boolean, e:Execution) extends Execution
+	{
+		def go():Unit = {
+			if (b)
+			{
+				if (lastVal != 0)
+					e.go()
+			}
+			else
+				if (lastVal == 0)
+					e.go()
+		}
+	}
+	case class PrintExec(isNum:Boolean, c:Character) extends Execution
+	{
+		def go():Unit = {
+			if (isNum)
+				println(c.curVal)
+			else
+				println(c.curVal.toChar)
+		}
+	}
+	case class ReadExec(isNum:Boolean, c:Character) extends Execution
+	{
+		def go():Unit = {
+			var line:String = readLine
+			if (isNum)
+				c.curVal = java.lang.Integer.parseInt(line)
+			else
+				c.curVal = line.charAt(0).toInt
+		}
+	}
+	abstract class ValueExec
+	{
+		def value():Int
+	}
+	case class CharacterExec(c:Character) extends ValueExec
+	{
+		def value():Int = c.curVal
+	}
+	case class ConstantExec(v:Int) extends ValueExec
+	{
+		def value():Int = v
+	}
+	case class BinOpExec(fn:Function2[Int,Int,Int], v1:ValueExec, v2:ValueExec) extends ValueExec
+	{
+		def value():Int = fn(v1.value(), v2.value())
+	}
 	class RunClass{}
 	object RUN extends RunClass{}
-	private var stmts = TreeMap.empty[Int, TreeMap[Int, List[Execution]]];
+	private var index = Tuple3(0,0,0)
+	private var stmts = new java.util.TreeMap[Int, java.util.TreeMap[Int, List[Execution]]]();
 	private var curSpeaker:Character = null;
 	private var curListener:Character = null;
 	private var curCharacters = HashSet.empty[Character];
@@ -407,6 +489,6 @@ object tester extends Shakespeare{
 	}
 
 	def main(args: Array[String]): Unit = {
-		ACT_I COLON SCENE_I COLON LEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET ROMEO COLON YOU ARE MY GOOD GOOD GOOD FRIEND STATEMENT_SYMBOL YOU ARE AS GOOD AS THE_SUM_OF YOURSELF AND YOURSELF STATEMENT_SYMBOL REMEMBER COMMA YOURSELF STATEMENT_SYMBOL/*IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL*/ SCENE_II COLON JULIET COLON LET_US PROCEED_TO ACT_II STATEMENT_SYMBOL LEFT_BRACKET EXIT JULIET RIGHT_BRACKET ACT_II COLON SCENE_II COLON ROMEO COLON SPEAK YOUR MIND STATEMENT_SYMBOL
+		ACT_I COLON SCENE_I COLON LEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET ROMEO COLON YOU ARE MY GOOD GOOD GOOD FRIEND STATEMENT_SYMBOL YOU ARE AS GOOD AS THE_SUM_OF YOURSELF AND YOURSELF STATEMENT_SYMBOL REMEMBER COMMA YOURSELF STATEMENT_SYMBOL /* IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL */ SCENE_II COLON /*LEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET */JULIET COLON LET_US PROCEED_TO ACT_II STATEMENT_SYMBOL ACT_II COLON SCENE_II COLON /*LEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET*/ ROMEO COLON SPEAK YOUR MIND STATEMENT_SYMBOL RUN
 	}
 }

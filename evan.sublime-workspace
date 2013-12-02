@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"Value",
+				"ValueExec"
+			],
+			[
+				"IS",
+				"IsClass"
+			],
+			[
+				"VAlue",
+				"ValueBuilder"
+			],
+			[
+				"State",
+				"StatementSymbolClass"
+			],
+			[
+				"St",
+				"Stack"
+			],
+			[
+				"THE",
+				"THE_DIFFERENCE_BETWEEN"
+			],
+			[
+				"YOUR",
+				"YOUR"
+			],
+			[
+				"Un",
+				"UnarticulatedConstant"
+			],
+			[
+				"Nega",
+				"NegativeNoun"
+			],
+			[
+				"Pos",
+				"PositiveNoun"
+			],
+			[
+				"Unar",
+				"UnarticulatedConstantBuilder"
+			],
+			[
 				"Scene",
 				"SceneRomanClass"
 			],
@@ -48,10 +92,6 @@
 				"SceneRomanClass"
 			],
 			[
-				"Un",
-				"UnconditionalSentence"
-			],
-			[
 				"Jump",
 				"JumpPhraseEnd"
 			],
@@ -92,10 +132,6 @@
 				"SentenceBuilder"
 			],
 			[
-				"State",
-				"StatementSymbolClass"
-			],
-			[
 				"Statement",
 				"STATEMENT_SYMBOL"
 			],
@@ -120,35 +156,20 @@
 	"buffers":
 	[
 		{
-			"contents": "ACT_I COLON SCENE_I COLON ROMEO COLON IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL SCENE_II COLON JULIET COLON LET_US PROCEED_TO SCENE_II STATEMENT_SYMBOL LEFT_BRACKET ENTRE JULIET RIGHT_BRACKET ACT_II COLON SCENE_II COLON ROMEO COLON IF_SO COMMA SPEAK YOUR MIND STATEMENT_SYMBOL",
-			"settings":
-			{
-				"buffer_size": 279,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "simple.txt",
-			"settings":
-			{
-				"buffer_size": 4287,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "shakespeare.scala",
 			"settings":
 			{
-				"buffer_size": 7360,
+				"buffer_size": 14316,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "README.md",
+			"file": "reverse.spl",
 			"settings":
 			{
-				"buffer_size": 1859,
-				"line_ending": "Unix"
+				"buffer_size": 959,
+				"line_ending": "Unix",
+				"name": "Outputting Input Reversedly."
 			}
 		}
 	],
@@ -192,12 +213,14 @@
 	},
 	"file_history":
 	[
+		"/home/evanott/GitProjects/scala_dsl/simple.txt",
+		"/home/evanott/GitProjects/scala_dsl/README.md",
+		"/home/evanott/GitProjects/scala_dsl/baysick.scala",
+		"/home/evanott/SWAG",
 		"/home/evanott/GitProjects/scala_dsl/original.y",
 		"/home/evanott/GitProjects/scala_dsl/current.txt",
 		"/home/evanott/GitProjects/scala_dsl/fullgrammar.txt",
 		"/home/evanott/GitProjects/scala_dsl/shakespeare.scala",
-		"/home/evanott/GitProjects/scala_dsl/README.md",
-		"/home/evanott/GitProjects/scala_dsl/baysick.scala",
 		"/home/evanott/GitProjects/scala_dsl/test.scala",
 		"/home/evanott/GitProjects/scala_dsl/Makefile",
 		"/home/evanott/GitProjects/scala_dsl/evan.sublime-project",
@@ -255,6 +278,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"get(",
+			"java.lang",
+			"input",
+			"Line",
+			"gotoLine",
+			"Equality",
+			"Value",
 			"SentenceBuilder",
 			"Jump ",
 			"If_SO",
@@ -330,78 +360,23 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"settings":
-					{
-						"buffer_size": 279,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								279,
-								279
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"word_wrap": true,
-							"wrap_width": 70
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "simple.txt",
-					"settings":
-					{
-						"buffer_size": 4287,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3321,
-								3321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 702.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 7360,
+						"buffer_size": 14316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6618,
-								6618
+								781,
+								781
 							]
 						],
 						"settings":
@@ -409,33 +384,34 @@
 							"syntax": "Packages/Scala/Scala.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3996.0,
+						"translation.y": 4410.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "README.md",
+					"buffer": 1,
+					"file": "reverse.spl",
 					"settings":
 					{
-						"buffer_size": 1859,
+						"buffer_size": 959,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1859,
-								1859
+								959,
+								959
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"auto_name": "Outputting Input Reversedly.",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 396.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -476,7 +452,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 288.0
+		"height": 222.0
 	},
 	"replace":
 	{
