@@ -1,5 +1,6 @@
 class Shakespeare {
 	import scala.collection.mutable.{HashMap, HashSet, Stack};
+	import scala.collection.immutable.{TreeMap};
 	trait MainFollowTrait{
 		def apply(c:Conditional):Conditional = c
     	def apply(s:SpeakClass):SpeakClass = s
@@ -13,6 +14,9 @@ class Shakespeare {
     	def apply(a:ActRomanClass):ActRomanClass = a
     	def apply(y:YouClass):YouClass = y
     	def apply(r:RememberClass):RememberClass = r
+    	def apply(r:RunClass):Unit = {
+    		// FIXME DO SOMETHING
+    	}
 	}
 
 	trait ValueFollowTrait {
@@ -44,6 +48,7 @@ class Shakespeare {
 		def apply(a:AndClass):ValueBuilder = new ValueBuilder
 		def AND:ValueBuilder = new ValueBuilder
 		def STATEMENT_SYMBOL:GeneralStatement = new GeneralStatement
+
 	}
 	class BinaryOp extends ValueFollowTrait{
 		var fn:Function2[Int,Int,Int] = null;
@@ -64,32 +69,58 @@ class Shakespeare {
     class CharacterList{
     	def RIGHT_BRACKET:EnterExit = new EnterExit
     }
-    class CharacterAndBuilder{
-    	def apply(c:Character):CharacterList = new CharacterList
+    class CharacterAndBuilder(b:Boolean){
+    	def apply(c:Character):CharacterList = {
+    		if (b)
+    		{
+    			curCharacters.add(c);
+    			if (curCharacters.size > 2)
+    				throw new IllegalStateException("Too many characters");
+    		}
+    		else
+    			curCharacters.remove(c);
+    		new CharacterList
+    	}
     }
-    class CharacterListBuilder{
-    	def AND:CharacterAndBuilder = new CharacterAndBuilder
+    class CharacterListBuilder(b:Boolean){
+    	def AND:CharacterAndBuilder = new CharacterAndBuilder(b)
     }
 
 
     class EnterExit extends SceneContents{}
     class EnterClass{
-    	def apply(c:Character):CharacterListBuilder = new CharacterListBuilder
+    	def apply(c:Character):CharacterListBuilder = {
+    		curCharacters.add(c);
+    		if (curCharacters.size > 2)
+    			throw new IllegalStateException("Too many characters");
+    		new CharacterListBuilder(true)
+    	}
     }
     class ExeuntClass{
-    	def apply(c:Character):CharacterListBuilder = new CharacterListBuilder
+    	def apply(c:Character):CharacterListBuilder = {
+    		curCharacters.remove(c);
+    		new CharacterListBuilder(false)
+    	}
     }
     class ExitCharacter{
     	def RIGHT_BRACKET:EnterExit = new EnterExit
     }
     class ExitClass{
-    	def apply(c:Character):ExitCharacter = new ExitCharacter
+    	def apply(c:Character):ExitCharacter = {
+    		curCharacters.remove(c);
+    		new ExitCharacter
+    	}
     }
     class EntreCharacter{
     	def RIGHT_BRACKET:EnterExit = new EnterExit
     }
     class EntreClass{
-    	def apply(c:Character):EntreCharacter = new EntreCharacter
+    	def apply(c:Character):EntreCharacter = {
+    		curCharacters.add(c);
+    		if (curCharacters.size > 2)
+    			throw new IllegalStateException("Too many characters")
+    		new EntreCharacter
+    	}
     }
     class EnterExitStart{
     	// many chars
@@ -224,13 +255,9 @@ class Shakespeare {
 	class YouClass{
 		def ARE:ConstantBuilder = new ConstantBuilder
 	}
-	class Equality extends ValueFollowTrait{
+	class Equality extends ValueFollowTrait{}
 
-	}
-
-	class Statement extends MainFollowTrait{
-
-	}
+	class Statement extends MainFollowTrait{}
 	class UnarticulatedConstant{
 		def STATEMENT_SYMBOL:Statement = new Statement
 	}
@@ -256,7 +283,6 @@ class Shakespeare {
 	class RememberClass{
 		def COMMA:ValueBuilder = new ValueBuilder
 	}
-
 
 	object REMEMBER extends RememberClass{}
 	object FRIEND extends PositiveNoun {}
@@ -304,57 +330,74 @@ class Shakespeare {
     }
 
 
-    class Act(name:String){
+    class Act(id:Int){
+    	var num:Int = id;
     	def apply(s:SceneRomanClass):SceneRomanClass = s
     }
 	class ActRomanClass{
-		var name = ""
+		var id = 0;
 		def COLON:Act = {
-			curAct = new Act(this.name)
+			curAct = new Act(this.id)
 			curAct
 		}
 	}
-	class Scene{
+	class Scene(id:Int){
+		var num:Int = id;
 		def apply(e:EnterExitStart):EnterExitStart = e
 		def apply(c:Character):Character = c
 	}
 	class SceneRomanClass{
-		var name = ""
+		var id = 0;
 		def COLON:Scene = {
-			new Scene
+			curScene = new Scene(this.id)
+			curCharacters.clear()
+			curScene
 		}
 	}
 	class Character{
 		var name:String = "";
-		var curVal:Int = 0;
-		var stack:Stack[Int] = new Stack[Int]
+		private var curVal:Int = 0;
+		private var stack:Stack[Int] = new Stack[Int]
 		def COLON:SentenceList = {
-			curSpeaker = this
+			if (!curCharacters.contains(this))
+				throw new IllegalStateException("Character talking who isn't on stage")
+			curSpeaker = this;
+			var temp = curCharacters.clone();
+			temp.remove(curSpeaker);
+			if (curCharacters.size > 1)
+				throw new IllegalStateException("Too many people present")
+			if (temp.first == None)
+				curListener = null;
+			else
+				curListener = temp.first;
 			new SentenceList
 		}
 	}
 
-	var stmts = new Array[Line](0);
-	var vals = HashMap.empty[Character, Stack[String]]
-
-	var curSpeaker:Character = null;
-	var curListener:Character = null;
-	var curAct:Act = null;
-	var curScene:Scene = null;
+	class Execution{}
+	class RunClass{}
+	object RUN extends RunClass{}
+	private var stmts = TreeMap.empty[Int, TreeMap[Int, List[Execution]]];
+	private var curSpeaker:Character = null;
+	private var curListener:Character = null;
+	private var curCharacters = HashSet.empty[Character];
+	private var curAct:Act = null;
+	private var curScene:Scene = null;
+	private var lastVal:Int = 0;
 }
 
 object tester extends Shakespeare{
 	object ACT_I extends ActRomanClass{
-		name = "i"
+		id=1
 	}
 	object ACT_II extends ActRomanClass{
-		name = "ii"
+		id=2
 	}
 	object SCENE_I extends SceneRomanClass{
-		name = "i"
+		id=1
 	}
 	object SCENE_II extends SceneRomanClass{
-		name = "ii"
+		id=2
 	}
 	object ROMEO extends Character{
 		name = "Romeo"

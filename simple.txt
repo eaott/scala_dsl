@@ -18,6 +18,8 @@ STRING_SYMBOL: ARTICLE | BE | CHARACTER | FIRST_PERSON | FIRST_PERSON_POSSESSIVE
               THE_SUM_OF | TWICE | WE_MUST | WE_SHALL | ACT_ROMAN | SCENE_ROMAN |
               ROMAN_NUMBER | NONMATCH
 END_SYMBOL: QUESTION_MARK | STATEMENT_SYMBOL 
+Question: IS COLON Value COMPARISON Value QUESTION_MARK
+
 
 
 
@@ -41,10 +43,13 @@ END_SYMBOL: QUESTION_MARK | STATEMENT_SYMBOL
 -- Line: CHARACTER COLON SentenceList
 -- SentenceList: Sentence | Sentence SentenceList
 -- Sentence: UnconditionalSentence | CONDITIONAL COMMA UnconditionalSentence
-UnconditionalSentence: --IN_OUT | --JUMP | Question | --Recall | --Remember | --Statement
+--UnconditionalSentence: --IN_OUT | --JUMP | --Recall | --Remember | --Statement
 
 
-Question: IS COLON Value COMPARISON Value QUESTION_MARK
+// FIXME - need the alternate path instead of Value STATEMENT or Value AND
+// proposed - set a flag, raise an exception of flag is not correct
+// actually, since we can have a value composed of ANDs, may need a stack...
+// or just don't actually implement it correctly. =]
 
 --Recall: RECALL YOURSELF STATEMENT_SYMBOL
 

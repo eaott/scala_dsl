@@ -32,3 +32,9 @@ the parsing point of view. Then, it's on to Eval. Sigh...
 
 
 Notes: POSITIVE_NOUN = 1, NEGATIVE_NOUN = -1. ADJ = * 2
+
+
+
+Differences - look at results of arithmetic for Comparisons
+			- some minor changes to value definitions for simplicity
+			- scenes have an assummed exeunt beforehand
