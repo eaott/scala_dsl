@@ -1,6 +1,7 @@
 class Shakespeare {
 	import scala.collection.mutable.{HashMap, HashSet, Stack};
 	import scala.collection.immutable.{TreeMap};
+	import scala.util.control.Breaks._
 	trait MainFollowTrait{
 		def apply(c:Conditional):Conditional = c
     	def apply(s:SpeakClass):SpeakClass = s
@@ -15,7 +16,14 @@ class Shakespeare {
     	def apply(y:YouClass):YouClass = y
     	def apply(r:RememberClass):RememberClass = r
     	def apply(r:RunClass):Unit = {
-    		// FIXME DO SOMETHING
+    		
+    		while(false){
+    			while(false){
+    				while(false){
+
+    				}
+    			}
+    		}
     	}
 	}
 
@@ -33,26 +41,65 @@ class Shakespeare {
         def YOURSELF:Pronoun = YOURSELF
         def MYSELF:Pronoun = MYSELF
 
-        def apply(b:BinaryOp):BinaryOp = b
-        def THE_DIFFERENCE_BETWEEN:BinaryOp = THE_DIFFERENCE_BETWEEN
-        def THE_PRODUCT_OF:BinaryOp = THE_PRODUCT_OF
-        def THE_QUOTIENT_BETWEEN:BinaryOp = THE_QUOTIENT_BETWEEN
-        def THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN:BinaryOp = THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN
-        def THE_SUM_OF:BinaryOp = THE_SUM_OF
+        def apply(b:BinaryOp):BinaryOp = {curOp = b; isBinary = true; b}
+        def THE_DIFFERENCE_BETWEEN:BinaryOp = {curOp = THE_DIFFERENCE_BETWEEN; isBinary = true;curOp}
+        def THE_PRODUCT_OF:BinaryOp = {curOp = THE_PRODUCT_OF; isBinary = true;curOp}
+        def THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = THE_QUOTIENT_BETWEEN; isBinary = true;curOp}
+        def THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN; isBinary = true;curOp}
+        def THE_SUM_OF:BinaryOp = {curOp = THE_SUM_OF; isBinary = true;curOp}
 	}
+	var curOp:BinaryOp = null;
+	var val1:ValueExec = null;
 	class AndClass extends ValueFollowTrait{}
 	class ValueBuilder extends ValueFollowTrait{}
 	class GeneralStatement extends MainFollowTrait{}
 	class Pronoun(c:Character){
-		def apply(s:StatementSymbolClass):GeneralStatement = new GeneralStatement
-		def apply(a:AndClass):ValueBuilder = new ValueBuilder
-		def AND:ValueBuilder = new ValueBuilder
-		def STATEMENT_SYMBOL:GeneralStatement = new GeneralStatement
+		def apply(s:StatementSymbolClass):GeneralStatement = {
+			// could be in assignment, push, or binary op (part of assignment, push)
+			var exec:Execution = null;
+			val ch:CharacterExec = new CharacterExec(c)
+			if (isBinary)
+			{
+				if (isRemember)
+				{
+					exec = new RememberExec(curListener, new BinOpExec(curOp.fn, val1, ch))
+				}
+				else{
+					exec = new AssignmentExec(curListener, new BinOpExec(curOp.fn, val1, ch))
+				}
+			}
+			else
+			{
+				if(isRemember)
+				{
+					exec = new RememberExec(curListener, ch)
+				}
+				else{
+					exec = new AssignmentExec(curListener, ch)
+				}
+			}
+			stmts.get(curAct.num).get(curScene.num) ++ List(exec)
+			// var temp = new BinOpExec(curOp.fn, val1, new CharacterExec(c))
+			// stmts.get(curAct.num).get(curScene.num) ++ List(temp)
+			new GeneralStatement
+		}
+		def apply(a:AndClass):ValueBuilder = {
+			val1 = new CharacterExec(c)
+			new ValueBuilder
+		}
+		def AND:ValueBuilder = {
+			val1 = new CharacterExec(c)
+			new ValueBuilder
+		}
+		def STATEMENT_SYMBOL:GeneralStatement = {
+			// var temp = new BinOpExec(curOp.fn, val1, new CharacterExec(c))
+			// stmts.get(curAct.num).get(curScene.num) ++ List(temp)
+			new GeneralStatement
+		}
 
 	}
 	class BinaryOp extends ValueFollowTrait{
 		var fn:Function2[Int,Int,Int] = null;
-		// FIXME followed by Value AND/Value STATEMENT_SYMBOL
 	}
 
 	/* Used to create SceneContents - once you have either an EnterExit or a
@@ -66,72 +113,72 @@ class Shakespeare {
 	}
 
 
-    class CharacterList{
-    	def RIGHT_BRACKET:EnterExit = new EnterExit
-    }
-    class CharacterAndBuilder(b:Boolean){
-    	def apply(c:Character):CharacterList = {
-    		if (b)
-    		{
-    			curCharacters.add(c);
-    			if (curCharacters.size > 2)
-    				throw new IllegalStateException("Too many characters");
-    		}
-    		else
-    			curCharacters.remove(c);
-    		new CharacterList
-    	}
-    }
-    class CharacterListBuilder(b:Boolean){
-    	def AND:CharacterAndBuilder = new CharacterAndBuilder(b)
-    }
+				    class CharacterList{
+				    	def RIGHT_BRACKET:EnterExit = new EnterExit
+				    }
+				    class CharacterAndBuilder(b:Boolean){
+				    	def apply(c:Character):CharacterList = {
+				    		if (b)
+				    		{
+				    			curCharacters.add(c);
+				    			if (curCharacters.size > 2)
+				    				throw new IllegalStateException("Too many characters");
+				    		}
+				    		else
+				    			curCharacters.remove(c);
+				    		new CharacterList
+				    	}
+				    }
+				    class CharacterListBuilder(b:Boolean){
+				    	def AND:CharacterAndBuilder = new CharacterAndBuilder(b)
+				    }
 
 
-    class EnterExit extends SceneContents{}
-    class EnterClass{
-    	def apply(c:Character):CharacterListBuilder = {
-    		curCharacters.add(c);
-    		if (curCharacters.size > 2)
-    			throw new IllegalStateException("Too many characters");
-    		new CharacterListBuilder(true)
-    	}
-    }
-    class ExeuntClass{
-    	def apply(c:Character):CharacterListBuilder = {
-    		curCharacters.remove(c);
-    		new CharacterListBuilder(false)
-    	}
-    }
-    class ExitCharacter{
-    	def RIGHT_BRACKET:EnterExit = new EnterExit
-    }
-    class ExitClass{
-    	def apply(c:Character):ExitCharacter = {
-    		curCharacters.remove(c);
-    		new ExitCharacter
-    	}
-    }
-    class EntreCharacter{
-    	def RIGHT_BRACKET:EnterExit = new EnterExit
-    }
-    class EntreClass{
-    	def apply(c:Character):EntreCharacter = {
-    		curCharacters.add(c);
-    		if (curCharacters.size > 2)
-    			throw new IllegalStateException("Too many characters")
-    		new EntreCharacter
-    	}
-    }
-    class EnterExitStart{
-    	// many chars
-    	def ENTER:EnterClass = new EnterClass
-    	// single char
-    	def ENTRE:EntreClass = new EntreClass
-    	// many chars
-    	def EXEUNT:ExeuntClass = new ExeuntClass
-    	// single char
-    	def EXIT:ExitClass = new ExitClass
-    }
+						    class EnterExit extends SceneContents{}
+						    class EnterClass{
+						    	def apply(c:Character):CharacterListBuilder = {
+						    		curCharacters.add(c);
+						    		if (curCharacters.size > 2)
+						    			throw new IllegalStateException("Too many characters");
+						    		new CharacterListBuilder(true)
+						    	}
+						    }
+						    class ExeuntClass{
+						    	def apply(c:Character):CharacterListBuilder = {
+						    		curCharacters.remove(c);
+						    		new CharacterListBuilder(false)
+						    	}
+						    }
+						    class ExitCharacter{
+						    	def RIGHT_BRACKET:EnterExit = new EnterExit
+						    }
+						    class ExitClass{
+						    	def apply(c:Character):ExitCharacter = {
+						    		curCharacters.remove(c);
+						    		new ExitCharacter
+						    	}
+						    }
+						    class EntreCharacter{
+						    	def RIGHT_BRACKET:EnterExit = new EnterExit
+						    }
+						    class EntreClass{
+						    	def apply(c:Character):EntreCharacter = {
+						    		curCharacters.add(c);
+						    		if (curCharacters.size > 2)
+						    			throw new IllegalStateException("Too many characters")
+						    		new EntreCharacter
+						    	}
+						    }
+						    class EnterExitStart{
+						    	// many chars
+						    	def ENTER:EnterClass = new EnterClass
+						    	// single char
+						    	def ENTRE:EntreClass = new EntreClass
+						    	// many chars
+						    	def EXEUNT:ExeuntClass = new ExeuntClass
+						    	// single char
+						    	def EXIT:ExitClass = new ExitClass
+						    }
 
 
 	class Line extends SceneContents{}
@@ -175,75 +222,101 @@ class Shakespeare {
     class SentenceList extends MainFollowTrait{}
     class Sentence extends SentenceList{}
     class UnconditionalSentence extends Sentence{}
-    class InOut extends UnconditionalSentence{}
-    class HeartClass{}
-    class MindClass{}
-    class OpenHeartBuilder{
-    	def STATEMENT_SYMBOL:InOut = new InOut
-    }
-    class OpenMindBuilder{
-    	def STATEMENT_SYMBOL:InOut = new InOut
-    }
-    class OpenClass{
-    	def YOUR:OpenBuilder = new OpenBuilder
-    }
-    class SpeakClass{
-    	def YOUR:SpeakBuilder = new SpeakBuilder
-    }
-    class ListenClass{
-    	def TO:ListenBuilder = new ListenBuilder
-    }
-    class OpenBuilder{
-    	def apply(h:HeartClass):OpenHeartBuilder = new OpenHeartBuilder
-    	def apply(m:MindClass):OpenMindBuilder = new OpenMindBuilder
-    }
-    class SpeakMindBuilder{
-    	def STATEMENT_SYMBOL:InOut = new InOut
-    }
-    class SpeakBuilder{
-    	def apply(m:MindClass):SpeakMindBuilder = new SpeakMindBuilder
-    }
-    class ListenHeartBuilder {
-    	def apply(s:StatementSymbolClass):InOut = new InOut
-    }
-    class ListenYourBuilder {
-    	def HEART:ListenHeartBuilder = new ListenHeartBuilder
-    }
-    class ListenBuilder{
-    	def apply(y:YourClass):ListenYourBuilder = new ListenYourBuilder
-    }
+				    class InOut extends UnconditionalSentence{}
+				    class HeartClass{}
+				    class MindClass{}
+				    class OpenHeartBuilder{
+				    	def STATEMENT_SYMBOL:InOut = {
+				    		stmts.get(curAct.num).get(curScene.num) ++ List(new PrintExec(true,curListener))
+				    		new InOut
+				    	}
+				    }
+				    class OpenMindBuilder{
+				    	def STATEMENT_SYMBOL:InOut = {
+				    		stmts.get(curAct.num).get(curScene.num) ++ List(new ReadExec(false, curListener))
+				    		new InOut
+				    	}
+				    }
+				    class OpenClass{
+				    	def YOUR:OpenBuilder = new OpenBuilder
+				    }
+				    class SpeakClass{
+				    	def YOUR:SpeakBuilder = new SpeakBuilder
+				    }
+				    class ListenClass{
+				    	def TO:ListenBuilder = new ListenBuilder
+				    }
+				    class OpenBuilder{
+				    	def apply(h:HeartClass):OpenHeartBuilder = new OpenHeartBuilder
+				    	def apply(m:MindClass):OpenMindBuilder = new OpenMindBuilder
+				    }
+				    class SpeakMindBuilder{
+				    	def STATEMENT_SYMBOL:InOut = {
+				    		stmts.get(curAct.num).get(curScene.num) ++ List(new PrintExec(false, curListener))
+				    		new InOut
+				    	}
+				    }
+				    class SpeakBuilder{
+				    	def apply(m:MindClass):SpeakMindBuilder = {
+				    		new SpeakMindBuilder
+				    	}
+				    }
+				    class ListenHeartBuilder {
+				    	def apply(s:StatementSymbolClass):InOut = {
+				    		stmts.get(curAct.num).get(curScene.num) ++ List(new ReadExec(true, curListener))
+				    		new InOut
+				    	}
+				    }
+				    class ListenYourBuilder {
+				    	def HEART:ListenHeartBuilder = new ListenHeartBuilder
+				    }
+				    class ListenBuilder{
+				    	def apply(y:YourClass):ListenYourBuilder = new ListenYourBuilder
+				    }
 
-    /* Used for building  */
-	class UnconditionalSentenceBuilder extends MainFollowTrait{}
-	class Conditional{
-		def COMMA:UnconditionalSentenceBuilder = new UnconditionalSentenceBuilder
-	}
-
-
-
-
-
-	class JumpClass extends UnconditionalSentence{}
-	class JumpBuilder{
-		def STATEMENT_SYMBOL:JumpClass = new JumpClass
-	}
-	class JumpPhrase{
-		def apply(a:ActRomanClass):JumpBuilder = new JumpBuilder
-		def apply(s:SceneRomanClass):JumpBuilder = new JumpBuilder
-	}
-	class JumpPhraseBeginning{
-		def PROCEED_TO:JumpPhrase = new JumpPhrase
-	}
+				    /* Used for building  */
+					class UnconditionalSentenceBuilder extends MainFollowTrait{}
+					class Conditional{
+						def COMMA:UnconditionalSentenceBuilder = new UnconditionalSentenceBuilder
+					}
 
 
 
-	class RecallClass extends UnconditionalSentence{}
-	class RecallBuilder{
-		def apply(s:StatementSymbolClass):RecallClass = new RecallClass
-	}
-	class RecallBeginningClass{
-		def YOURSELF:RecallBuilder = new RecallBuilder
-	}
+
+
+					class JumpClass extends UnconditionalSentence{}
+					class JumpBuilder{
+						def STATEMENT_SYMBOL:JumpClass = new JumpClass
+					}
+					class JumpPhrase{
+						def apply(a:ActRomanClass):JumpBuilder = {
+							stmts.get(curAct.num).get(curScene.num) ++ List(new ActJumpExec(a.id))
+							new JumpBuilder
+						}
+						def apply(s:SceneRomanClass):JumpBuilder = {
+							stmts.get(curAct.num).get(curScene.num) ++ List(new SceneJumpExec(s.id))
+							new JumpBuilder
+						}
+					}
+					class JumpPhraseBeginning{
+						def PROCEED_TO:JumpPhrase = new JumpPhrase
+					}
+
+
+
+						class RecallClass extends UnconditionalSentence{}
+						class RecallBuilder(c:Character){
+							def apply(s:StatementSymbolClass):RecallClass = {
+								stmts.get(curAct.num).get(curScene.num) ++ List(new RecallExec(c))
+								new RecallClass
+							}
+						}
+						class RecallBeginningClass{
+							def YOURSELF:RecallBuilder = new RecallBuilder(curListener)
+						}
+
+	var isRemember:Boolean = false;
+	var isBinary:Boolean = false;
 
 	class ConstantBuilder{
 		def apply(a:AsClass):AsClass = a
@@ -253,35 +326,91 @@ class Shakespeare {
 		def apply(m:MyClass):MyClass = m
 	}
 	class YouClass{
-		def ARE:ConstantBuilder = new ConstantBuilder
+		def ARE:ConstantBuilder = {
+			isRemember = false; isBinary = false;
+			new ConstantBuilder
+		}
 	}
 	class Equality extends ValueFollowTrait{}
 
 	class Statement extends MainFollowTrait{}
-	class UnarticulatedConstant{
-		def STATEMENT_SYMBOL:Statement = new Statement
+	class UnarticulatedConstant(n:Int){
+		def STATEMENT_SYMBOL:Statement = {
+			var exec:Execution = null;
+			val c:ConstantExec = new ConstantExec(n)
+			if (isBinary)
+			{
+				if (isRemember)
+				{
+					exec = new RememberExec(curListener, new BinOpExec(curOp.fn, val1, c))
+				}
+				else{
+					exec = new AssignmentExec(curListener, new BinOpExec(curOp.fn, val1, c))
+				}
+			}
+			else
+			{
+				if(isRemember)
+				{
+					exec = new RememberExec(curListener, c)
+				}
+				else{
+					exec = new AssignmentExec(curListener, c)
+				}
+			}
+			stmts.get(curAct.num).get(curScene.num) ++ List(exec)
+			new Statement
+		}
 	}
 	class UnarticulatedConstantBuilder{
-		def GOOD:UnarticulatedConstantBuilder = this
-		def HORRIBLE: UnarticulatedConstantBuilder = this
-		def FRIEND:UnarticulatedConstant = new UnarticulatedConstant
-		def ENEMY:UnarticulatedConstant = new UnarticulatedConstant
-		def apply(a:PositiveComparative):UnarticulatedConstantBuilder = this
-		def apply(a:NegativeComparative):UnarticulatedConstantBuilder = this
-		def apply(n:PositiveNoun):UnarticulatedConstant = new UnarticulatedConstant
-		def apply(n:NegativeNoun):UnarticulatedConstant = new UnarticulatedConstant
+		var num = 1
+		def GOOD:UnarticulatedConstantBuilder = {num = num * 2; this}
+		def HORRIBLE: UnarticulatedConstantBuilder = {num = num * 2; this}
+		def FRIEND:UnarticulatedConstant = new UnarticulatedConstant(num)
+		def ENEMY:UnarticulatedConstant = new UnarticulatedConstant(num * -1)
+		def apply(a:PositiveComparative):UnarticulatedConstantBuilder = {num = num * 2; this}
+		def apply(a:NegativeComparative):UnarticulatedConstantBuilder = {num = num * 2; this}
+		def apply(n:PositiveNoun):UnarticulatedConstant = new UnarticulatedConstant(num)
+		def apply(n:NegativeNoun):UnarticulatedConstant = new UnarticulatedConstant(num * -1)
 	}
 	class TheClass extends UnarticulatedConstantBuilder{}
 	class YourClass extends UnarticulatedConstantBuilder{}
 	class MyClass extends UnarticulatedConstantBuilder{}
 	class NothingClass{
-		def STATEMENT_SYMBOL:Statement = new Statement
+		def STATEMENT_SYMBOL:Statement = {
+			var exec:Execution = null;
+			val c:ConstantExec = new ConstantExec(0)
+			if (isBinary)
+			{
+				if (isRemember)
+				{
+					exec = new RememberExec(curListener, new BinOpExec(curOp.fn, val1, c))
+				}
+				else{
+					exec = new AssignmentExec(curListener, new BinOpExec(curOp.fn, val1, c))
+				}
+			}
+			else
+			{
+				if(isRemember)
+				{
+					exec = new RememberExec(curListener, c)
+				}
+				else{
+					exec = new AssignmentExec(curListener, c)
+				}
+			}
+			stmts.get(curAct.num).get(curScene.num) ++ List(exec)
+			new Statement
+		}
 	}
 
 	class PositiveNoun{}
 	class NegativeNoun{}
 	class RememberClass{
-		def COMMA:ValueBuilder = new ValueBuilder
+		def COMMA:ValueBuilder = {isRemember = true; isBinary = false;
+			new ValueBuilder
+		}
 	}
 
 	object REMEMBER extends RememberClass{}

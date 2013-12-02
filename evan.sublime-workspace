@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"Chara",
+				"CharacterExec"
+			],
+			[
+				"Char",
+				"CharacterExec"
+			],
+			[
+				"Ju",
+				"ActJumpExec"
+			],
+			[
+				"Constant",
+				"ConstantExec"
+			],
+			[
 				"Value",
 				"ValueExec"
 			],
@@ -72,16 +88,8 @@
 				"RecallBeginningClass"
 			],
 			[
-				"Char",
-				"Character"
-			],
-			[
 				"Character",
 				"CharacterCommaBuilder"
-			],
-			[
-				"Chara",
-				"CharacterListBuilder"
 			],
 			[
 				"JumpPhrase",
@@ -159,7 +167,15 @@
 			"file": "shakespeare.scala",
 			"settings":
 			{
-				"buffer_size": 14316,
+				"buffer_size": 18291,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "simple.txt",
+			"settings":
+			{
+				"buffer_size": 4377,
 				"line_ending": "Unix"
 			}
 		},
@@ -278,6 +294,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Equality",
+			"AsClass",
 			"get(",
 			"java.lang",
 			"input",
@@ -368,15 +386,15 @@
 					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 14316,
+						"buffer_size": 18291,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								781,
-								781
+								844,
+								844
 							]
 						],
 						"settings":
@@ -384,13 +402,41 @@
 							"syntax": "Packages/Scala/Scala.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4410.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "simple.txt",
+					"settings":
+					{
+						"buffer_size": 4377,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2598,
+								2598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "reverse.spl",
 					"settings":
 					{
@@ -452,7 +498,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 222.0
+		"height": 282.0
 	},
 	"replace":
 	{
