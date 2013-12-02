@@ -45,13 +45,7 @@ Question: IS COLON Value COMPARISON Value QUESTION_MARK
 -- Sentence: UnconditionalSentence | CONDITIONAL COMMA UnconditionalSentence
 --UnconditionalSentence: --IN_OUT | --JUMP | --Recall | --Remember | --Statement
 
-
-// FIXME - need the alternate path instead of Value STATEMENT or Value AND
-// proposed - set a flag, raise an exception of flag is not correct
-// actually, since we can have a value composed of ANDs, may need a stack...
-// or just don't actually implement it correctly. =]
-
---Recall: RECALL YOURSELF STATEMENT_SYMBOL
+--Recall: RECALL STATEMENT_SYMBOL
 
 --Remember: REMEMBER COMMA Value STATEMENT_SYMBOL
 
@@ -66,7 +60,8 @@ Question: IS COLON Value COMPARISON Value QUESTION_MARK
 --NegativeConstant: NEGATIVE_NOUN | NEGATIVE_ADJECTIVE NegativeConstant
 
 
---Value: Constant | PRONOUN | BINARY_OPERATOR Value AND Value
+--Value: Constant | PRONOUN FOOL | BINARY_OPERATOR ValueA AND ValueA
+--ValueA: Constant | PRONOUN FOOL
 
 --ADJECTIVE: POSITIVE_ADJ | NEUTRAL_ADJ | NEGATIVE_ADJ
 --BINARY_OPERATOR: THE_DIFFERENCE_BETWEEN | THE_PRODUCT_OF | THE_QUOTIENT_BETWEEN |
