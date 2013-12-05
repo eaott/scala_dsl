@@ -1,3 +1,4 @@
+### Parts of language not implemented ###
 StartSymbol: Play
 Play: Title CharacterDeclarationList Acts
 Title: String END_SYMBOL
@@ -23,7 +24,7 @@ Question: IS COLON Value COMPARISON Value QUESTION_MARK
 
 
 
-
+### parts of language implemented
 --Acts: Act | Act Acts
 --Act: ActHeader Scenes
 --ActHeader: ACT_ROMAN COLON
@@ -60,8 +61,8 @@ Question: IS COLON Value COMPARISON Value QUESTION_MARK
 --NegativeConstant: NEGATIVE_NOUN | NEGATIVE_ADJECTIVE NegativeConstant
 
 
---Value: Constant | PRONOUN FOOL | BINARY_OPERATOR ValueA AND ValueA
---ValueA: Constant | PRONOUN FOOL
+--Value: Constant | PRONOUN | BINARY_OPERATOR ValueA AND ValueA
+--ValueA: Constant | PRONOUN
 
 --ADJECTIVE: POSITIVE_ADJ | NEUTRAL_ADJ | NEGATIVE_ADJ
 --BINARY_OPERATOR: THE_DIFFERENCE_BETWEEN | THE_PRODUCT_OF | THE_QUOTIENT_BETWEEN |

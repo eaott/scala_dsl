@@ -1,6 +1,36 @@
+/**
+Used to provide a Scala internal DSL based largely on the Shakespeare Programming Language,
+but modified somewhat for a DSL/BASIC/assembly-like construction.
+*/
 class Shakespeare {
 	import scala.collection.mutable.{HashMap, HashSet, Stack};
 	import scala.collection.immutable.{TreeMap};
+
+	// used for jump PCs
+	private var index = Tuple3(0,0,0)
+	// store all lines as Act->Scene->Line where line has all necessary data
+	private var stmts = new java.util.TreeMap[Int, java.util.TreeMap[Int, java.util.List[Execution]]]();
+
+	// used to keep track of characters on stage
+	private var curSpeaker:Character = null;
+	private var curListener:Character = null;
+	private var curCharacters = HashSet.empty[Character];
+
+	// used to keep track of what act and scene we are in during parsing
+	private var curAct:Act = null;
+	private var curScene:Scene = null;
+
+	// keeps track of last value computed
+	private var lastVal:Int = 0;
+
+
+	/**
+		Used largely for stringing commands together on a single line. More like normal Shakespeare
+		language which essnetially treats all whitespace the same to read more like English,
+		separated on multiple lines like this comment.
+
+		This only allows full commands on each line, but does permit putting many together.
+	*/
 	class MainFollowTrait{
 		def apply(c:Conditional):Conditional = c
     	def apply(s:SpeakClass):SpeakClass = s
@@ -14,6 +44,10 @@ class Shakespeare {
     	def apply(a:ActRomanClass):ActRomanClass = a
     	def apply(y:YouClass):YouClass = y
     	def apply(r:RememberClass):RememberClass = r
+
+    	/**
+    		When RUN is the given statement, start executing at first act/scene.
+    	*/
     	def apply(r:RunClass):Unit = {
     		var actIndex:Int = stmts.firstKey();
     		while(actIndex <= stmts.lastKey() && actIndex > 0){
@@ -22,9 +56,8 @@ class Shakespeare {
     				var lineIndex:Int = 0
     				while(lineIndex < stmts.get(actIndex).get(sceneIndex).size()){
     					index = Tuple3(actIndex, sceneIndex, lineIndex);
+    					// execution could include a jump - test for this and use that PC if changed
     					stmts.get(actIndex).get(sceneIndex).get(lineIndex).go()
-    					// println(actIndex + " " + sceneIndex + " " + lineIndex)
-    					// println(stmts)
     					if (index._1 != actIndex || index._2 != sceneIndex || index._3 != lineIndex)
     					{
     						actIndex = index._1
@@ -43,6 +76,11 @@ class Shakespeare {
     	}
 	}
 
+	/**
+		Used specifically for cases where a Value needs to follow the previous word.
+		Two versions are given for each to account for the "parity" of the word within the line which
+		gets evaluated as a.b(c).d(e).f(g)...
+	*/
 	class ValueFollowTrait {
 		def apply(t:TheClass):TheClass = t
 		def apply(m:MyClass):MyClass = m
@@ -58,28 +96,17 @@ class Shakespeare {
         def MYSELF:Pronoun = {new Pronoun(curSpeaker) }
 
         def apply(b:BinaryOp):BinaryOp = {curOp = b; isBinary = true; b}
-        /*
-            object THE_DIFFERENCE_BETWEEN extends BinaryOp {
-    	fn = (a:Int, b:Int)=>(a - b);
-    }
-    object THE_PRODUCT_OF extends BinaryOp {
-    	fn = (a:Int, b:Int)=>(a * b);
-    }
-    object THE_QUOTIENT_BETWEEN extends BinaryOp {
-    	fn = (a:Int, b:Int)=>(a / b);
-    }
-    object THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN extends BinaryOp {
-    	fn = (a:Int, b:Int)=>(a % b);
-    }
-    object THE_SUM_OF extends BinaryOp {
-    	fn = (a:Int, b:Int)=>(a + b);
-    }*/
-        def THE_DIFFERENCE_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a + b); isBinary = true;curOp}
-        def THE_PRODUCT_OF:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a + b); isBinary = true;curOp}
-        def THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a + b); isBinary = true;curOp}
-        def THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a + b); isBinary = true;curOp}
+        def THE_DIFFERENCE_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a - b); isBinary = true;curOp}
+        def THE_PRODUCT_OF:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a * b); isBinary = true;curOp}
+        def THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a / b); isBinary = true;curOp}
+        def THE_REMAINDER_OF_THE_QUOTIENT_BETWEEN:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a % b); isBinary = true;curOp}
         def THE_SUM_OF:BinaryOp = {curOp = new BinaryOp(); curOp.fn = (a:Int, b:Int)=>(a + b); isBinary = true;curOp}
 	}
+
+	/*********************************************************************************
+	Class definitions follow, all based around the grammar construct they represent.
+	**********************************************************************************/
+
 	var curOp:BinaryOp = null;
 	var val1:ValueExec = null;
 	class AndClass extends ValueFollowTrait{}
@@ -121,8 +148,6 @@ class Shakespeare {
 				}
 			}
 			stmts.get(curAct.num).get(curScene.num).add(exec)
-			// var temp = new BinOpExec(curOp.fn, val1, new CharacterExec(c))
-			// stmts.get(curAct.num).get(curScene.num) ++ List(temp)
 			new GeneralStatement()
 		}
 
@@ -387,6 +412,7 @@ class Shakespeare {
 			new Statement
 		}
 	}
+	// Used to build up the constant value using only GOOD, HORRIBLE (*2) and FRIEND(1), ENEMY(-1)
 	class UnarticulatedConstantBuilder{
 		var num = 1
 		def GOOD:UnarticulatedConstantBuilder = {num = num * 2; this}
@@ -401,6 +427,7 @@ class Shakespeare {
 	class TheClass extends UnarticulatedConstantBuilder{}
 	class YourClass extends UnarticulatedConstantBuilder{}
 	class MyClass extends UnarticulatedConstantBuilder{}
+	// Used for the 0 value
 	class NothingClass{
 		def STATEMENT_SYMBOL:Statement = {
 			var exec:Execution = null;
@@ -438,6 +465,7 @@ class Shakespeare {
 		}
 	}
 
+	// Create objects from the classes so that they can be used without parentheses, etc. in the DSL
 	object REMEMBER extends RememberClass{}
 	object FRIEND extends PositiveNoun {}
 	object ENEMY extends NegativeNoun{}
@@ -510,6 +538,10 @@ class Shakespeare {
 			curScene
 		}
 	}
+
+	/**
+	Keep track of characters and throw exceptions if more than 2 characters are on stage at a time.
+	*/
 	class Character{
 		var name:String = "";
 		var curVal:Int = 0;
@@ -530,6 +562,9 @@ class Shakespeare {
 		}
 	}
 
+	/**
+	Used to represent the various kinds of statements
+	*/
 	abstract class Execution{
 		def go():Unit
 	}
@@ -594,6 +629,10 @@ class Shakespeare {
 				c.curVal = line.charAt(0).toInt
 		}
 	}
+
+	/**
+	Used to represent integer values coming from different sources.
+	*/
 	abstract class ValueExec
 	{
 		def value():Int
@@ -612,37 +651,5 @@ class Shakespeare {
 	}
 	class RunClass{}
 	object RUN extends RunClass{}
-	private var index = Tuple3(0,0,0)
-	private var stmts = new java.util.TreeMap[Int, java.util.TreeMap[Int, java.util.List[Execution]]]();
-	private var curSpeaker:Character = null;
-	private var curListener:Character = null;
-	private var curCharacters = HashSet.empty[Character];
-	private var curAct:Act = null;
-	private var curScene:Scene = null;
-	private var lastVal:Int = 0;
 }
 
-object tester extends Shakespeare{
-	object ACT_I extends ActRomanClass{
-		id=1
-	}
-	object ACT_II extends ActRomanClass{
-		id=2
-	}
-	object SCENE_I extends SceneRomanClass{
-		id=1
-	}
-	object SCENE_II extends SceneRomanClass{
-		id=2
-	}
-	object ROMEO extends Character{
-		name = "Romeo"
-	}
-	object JULIET extends Character{
-		name = "Juliet"
-	}
-
-	def main(args: Array[String]): Unit = {
-		ACT_I COLON SCENE_I COLON LEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET ROMEO COLON YOU ARE MY GOOD GOOD GOOD FRIEND STATEMENT_SYMBOL YOU ARE AS GOOD AS THE_SUM_OF YOURSELF AND YOURSELF STATEMENT_SYMBOL REMEMBER COMMA YOURSELF STATEMENT_SYMBOL YOU ARE MY HORRIBLE HORRIBLE HORRIBLE ENEMY STATEMENT_SYMBOL OPEN YOUR HEART STATEMENT_SYMBOL RECALL STATEMENT_SYMBOL OPEN YOUR HEART STATEMENT_SYMBOL JULIET COLON OPEN YOUR HEART STATEMENT_SYMBOL RUN
-	}
-}

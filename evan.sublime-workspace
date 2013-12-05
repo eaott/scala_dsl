@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"STAT",
+				"STATEMENT_SYMBOL"
+			],
+			[
+				"Stat",
+				"Statement"
+			],
+			[
+				"Con",
+				"Conditional"
+			],
+			[
+				"REm",
+				"RememberClass"
+			],
+			[
+				"scn",
+				"sceneIndex"
+			],
+			[
+				"scee",
+				"sceneIndex"
+			],
+			[
 				"Chara",
 				"CharacterExec"
 			],
@@ -144,10 +168,6 @@
 				"STATEMENT_SYMBOL"
 			],
 			[
-				"STAT",
-				"StatementSymbolClass"
-			],
-			[
 				"pr",
 				"printInt"
 			],
@@ -167,15 +187,15 @@
 			"file": "shakespeare.scala",
 			"settings":
 			{
-				"buffer_size": 18291,
+				"buffer_size": 18773,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "simple.txt",
+			"contents": "ACT_I COLON\nSCENE_I COLON\nLEFT_BRACKET ENTER ROMEO AND JULIET RIGHT_BRACKET\nROMEO COLON \n	YOU ARE MY GOOD GOOD GOOD FRIEND STATEMENT_SYMBOL\n	YOU ARE AS GOOD AS THE_SUM_OF YOURSELF AND YOURSELF STATEMENT_SYMBOL\n	REMEMBER COMMA YOURSELF STATEMENT_SYMBOL\n	YOU ARE MY HORRIBLE HORRIBLE HORRIBLE ENEMY STATEMENT_SYMBOL\n	OPEN YOUR HEART STATEMENT_SYMBOL RECALL STATEMENT_SYMBOL\n	OPEN YOUR HEART STATEMENT_SYMBOL\nJULIET COLON\n	OPEN YOUR HEART STATEMENT_SYMBOL \nRUN\n",
 			"settings":
 			{
-				"buffer_size": 4377,
+				"buffer_size": 458,
 				"line_ending": "Unix"
 			}
 		},
@@ -230,9 +250,9 @@
 	"file_history":
 	[
 		"/home/evanott/GitProjects/scala_dsl/simple.txt",
+		"/home/evanott/SWAG",
 		"/home/evanott/GitProjects/scala_dsl/README.md",
 		"/home/evanott/GitProjects/scala_dsl/baysick.scala",
-		"/home/evanott/SWAG",
 		"/home/evanott/GitProjects/scala_dsl/original.y",
 		"/home/evanott/GitProjects/scala_dsl/current.txt",
 		"/home/evanott/GitProjects/scala_dsl/fullgrammar.txt",
@@ -294,6 +314,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"HORRIBLE",
+			"class Statement",
+			"GOOD",
+			"Friend",
+			"YOURSELF",
+			"SceneContents",
+			"YOURSELF",
+			"stmts",
 			"Equality",
 			"AsClass",
 			"get(",
@@ -386,20 +414,21 @@
 					"file": "shakespeare.scala",
 					"settings":
 					{
-						"buffer_size": 18291,
+						"buffer_size": 18773,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								844,
-								844
+								18765,
+								18765
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage"
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -409,28 +438,25 @@
 				},
 				{
 					"buffer": 1,
-					"file": "simple.txt",
 					"settings":
 					{
-						"buffer_size": 4377,
+						"buffer_size": 458,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2598,
-								2598
+								453,
+								453
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Scala/Scala.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -498,7 +524,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 282.0
+		"height": 212.0
 	},
 	"replace":
 	{
